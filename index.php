@@ -8,32 +8,87 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <style>
+      body,
+html {
+  height: 100%;
+}
+.bg {
+  /* The image used */
+  background-image: url("https://www.phuket.psu.ac.th/wp-content/uploads/2019/01/g3.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container-fluid{
+    padding: 50px;
+    text-align: center;
+  color:white;
+}
+.button {
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  .button:hover {opacity: 1}
+  .input{
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 22px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    cursor: pointer;
+    border-radius: 40px;
+  }
+  .input:hover {opacity: 1}
+    </style>
   </head>
   <body>
     <div class="bg">
-    <div class="container-fluid">
-      <h1>PSU Phuket TOEIC Test Online System</h1>
+      <div class="container-fluid">
+        <h1>PSU Phuket TOEIC Test Online System</h1>
       </div>
+      <form action="home.php" method="post" name="AdminLogIn">
       <div class="container">
         <div class="row">
-          <div class="col-md-4"></div>
-          <form action="" method="" name="">
+          <div class="col-md-4"></div>        
           <div class="col-md-4">
               <div class="card-body text-center">
                 <h3>Administration Signin</h3><br>
                 <div>
-                  <input type="text" class="input" placeholder="Username" require>
+                  <input type="text" name="username" class="input" placeholder="Username" require>
                   <br>
-                  <input type="password" class="input" placeholder="Password" require>
+                  <input type="password" name="password" class="input" placeholder="Password" require>
                 </div>
                 <br>
-                <button type="button" class="button">LOG IN</button>
-            </div>
-            </form>
+                <input type="submit" class="button" value="LOG IN">
+              </div>
           </div>
           <div class="col-md-4" ></div>
         </div>
+      </div>
+      </form>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
