@@ -2,13 +2,13 @@ html {
   font-size: 62.5%;
 }
 .overlay::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, .3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .header-area {
   position: relative;
@@ -30,7 +30,7 @@ html {
 }
 .navbar .navbar-brand {
   color: #fff;
-  font-size: 2.5rem;
+  font-size: 2.7rem;
 }
 .navbar .navbar-toggler {
   position: relative;
@@ -80,21 +80,22 @@ html {
 .navbar-dark .navbar-nav .nav-link {
   position: relative;
   color: #fff;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
-.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
   color: #fff;
 }
 .navbar .dropdown-menu {
   padding: 0;
-  background-color: rgba(0, 0, 0, .9);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 .navbar .dropdown-menu .dropdown-item {
   position: relative;
   padding: 10px 20px;
   color: #fff;
   font-size: 1.4rem;
-  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: color 0.2s ease-in;
 }
 .navbar .dropdown-menu .dropdown-item:last-child {
@@ -105,7 +106,7 @@ html {
   color: salmon;
 }
 .navbar .dropdown-menu .dropdown-item::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -122,7 +123,7 @@ html {
   position: fixed;
   -webkit-animation: navbar-animation 0.6s;
   animation: navbar-animation 0.6s;
-  background-color: rgba(0, 0, 0, .9);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 .navbar.fixed-top.navbar-dark .navbar-nav .nav-link.active {
   color: salmon;
@@ -139,7 +140,7 @@ html {
   }
   .navbar-nav {
     padding: 0 20px;
-    background-color: rgba(0, 0, 0, .9);
+    background-color: rgba(0, 0, 0, 0.9);
   }
   .navbar.fixed-top .navbar-nav {
     background: transparent;
@@ -150,7 +151,7 @@ html {
     padding: 23px 15px;
   }
   .navbar-dark .navbar-nav .nav-link::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 15px;
     left: 30%;
@@ -237,4 +238,11 @@ html {
     -ms-transform: scaleY(1);
     transform: scaleY(1);
   }
+}
+h1{
+  text-align: center;
+  font-weight: 100;
+}
+.shadow-textarea textarea.form-control {
+  font-size: 20px;
 }
