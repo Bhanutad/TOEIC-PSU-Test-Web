@@ -1,8 +1,15 @@
 <?php
-// echo $_POST["username"];
-// echo $_POST["password"];
+session_start();
+	if($_SESSION['AdminID'] == "")
+	{
+		echo "
+		<script>
+		alert('Please Login!');
+		window.location = 'index.php';
+		</script>";
+		exit();
+	}
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,7 +26,7 @@
   <header class="header-area overlay" style="height: 80px;">
     <nav class="navbar navbar-expand-md navbar-dark">
 		<div class="container">
-			<a href="#" class="navbar-brand nav-link">TOEIC PSU Phuket Test Online System</a>
+			<a href="home.php" class="navbar-brand nav-link">TOEIC PSU Phuket Test Online System</a>
 			<div id="main-nav" class="collapse navbar-collapse">
 				<ul class="navbar-nav ml-auto">
 					<li><a href="schedule.php" class="nav-item nav-link">Schedule</a></li>
@@ -36,7 +43,7 @@
 						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Admin Management</a>
 						<div class="dropdown-menu">
 							<a href="#" class="dropdown-item">Admin Management</a>
-							<a href="index.php" class="dropdown-item">LOG OUT</a>
+							<a href="logout.php" class="dropdown-item">LOG OUT</a>
 						</div>
 					</li>
 				</ul>
@@ -61,8 +68,7 @@
     			<div class="btn btn-outline-primary waves-effect btn-lg float-left">
       				<input type="file">
 				</div>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-				<input type="submit" class="btn btn-outline-primary btn-lg" value="POST">
+				<input type="submit" class="btn btn-outline-primary btn-lg float-right" value="POST">
   			</div>
 		</form>
 		</div>
