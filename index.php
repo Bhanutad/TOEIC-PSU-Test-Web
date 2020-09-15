@@ -69,7 +69,7 @@ html {
       <div class="container-fluid">
         <h1>PSU Phuket TOEIC Test Online System</h1>
       </div>
-      <form action="home.php" method="post" name="AdminLogIn">
+      <form action="login.php" method="post" name="AdminLogIn">
       <div class="container">
         <div class="row">
           <div class="col-md-4"></div>        
