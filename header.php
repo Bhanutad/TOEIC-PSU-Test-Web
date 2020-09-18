@@ -18,19 +18,19 @@
 			<div id="main-nav" class="collapse navbar-collapse">
 				<ul class="navbar-nav ml-auto">
 					<li><a href="schedule.php" class="nav-item nav-link">Schedule</a></li>
-					<li><a href="#" class="nav-item nav-link">Terms & Conditions</a></li>
+					<li><a href="term.php" class="nav-item nav-link">Terms & Conditions</a></li>
 					<li class="dropdown">
 						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Applicant</a>
 						<div class="dropdown-menu">
-							<a href="schedule.php" class="dropdown-item">Student Name List</a>
-							<a href="#" class="dropdown-item">Student Score</a>
-							<a href="#" class="dropdown-item">General</a>
+							<a href="studentlist.php" class="dropdown-item">Student Name List</a>
+							<a href="studentscore.php" class="dropdown-item">Student Score</a>
+							<a href="general.php" class="dropdown-item">General</a>
 						</div>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Admin Management</a>
 						<div class="dropdown-menu">
-							<a href="#" class="dropdown-item">Admin Management</a>
+							<a href="admin.php" class="dropdown-item">Admin Management</a>
 							<a href="logout.php" class="dropdown-item">LOG OUT</a>
 						</div>
 					</li>
