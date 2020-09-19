@@ -1,3 +1,15 @@
+<?php
+session_start();
+	if($_SESSION['AdminID'] == "")
+	{
+		echo "
+		<script>
+		alert('Please Login!');
+		window.location = 'index.php';
+		</script>";
+		exit();
+	}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -26,7 +38,7 @@
   <body>
   <div>
         <div class="container-fluid">
-          <h1 style="text-align:center">Add new Schedule</h1>
+          <h1 >Add new Schedule</h1>
         </div>
           <div class="container">
             <div class="row">
@@ -90,15 +102,14 @@
 				  </div>
                 </div>
                 <div style="text-align: center;">
-                <input type="submit" class="btn btn-outline-primary btn-lg float-mid" value="Add sechedule">
+                <input type="submit" class="btn btn-outline-primary btn-lg " value="Add admin">
                 </div>
                 <br>
-                <form action="schedule.php">
+              </form>
               </div>
               <div class="col-md-4"></div>
             </div>
-          </div>
-          
+          </div>  
   </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
