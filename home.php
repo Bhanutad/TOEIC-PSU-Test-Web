@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 session_start();
-	if($_SESSION['AdminID'] == "")
+	if($_SESSION['adminID'] == "")
 	{
 		echo "
 		<script>
@@ -25,29 +25,23 @@ session_start();
   </head>
   <body>
   <div>
-  <div>
-  <h1 class="display-1">NEWS</h1>
-  </div>
-  <div class="container">
-	  <div class="row">
-		<div class="col-md-4"></div>
-		<div class="col-md-4">
-			<br>
-		<div class="form-group shadow-textarea">
- 		<textarea class="form-control z-depth-1 btn-outline-primary" id="exampleFormControlTextarea6" rows="3" placeholder="News update ..."></textarea>
-		</div>
-		<form class="md-form">
-  			<div class="file-field big-2">
-    			<div class="btn btn-outline-primary waves-effect btn-lg float-left">
-      				<input type="file">
-				</div>
-				<input type="submit" class="btn btn-outline-primary btn-lg float-right" value="POST">
-  			</div>
-		</form>
-		</div>
-		<div class="col-md-4"></div>
-	  </div>
-  </div>
+          <div>
+             <h1 class="display-1">NEWS</h1>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <div style="text-align: center" >
+	        	      <a href="addNews.php">
+		              <button class="btn btn-primary btn-lg">Add news</button>
+		              </a>
+		            </div>
+              </div>
+              <div class="col-md-4"></div>
+            </div>
+          </div>
+      </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
