@@ -2,7 +2,7 @@
 session_start();
 include  'config.php';
 
-$sql = 'SELECT * FROM manageadmin WHERE Username ="'.$_POST['username'].'" AND Password = "'.$_POST['password'].'"';
+$sql = 'SELECT * FROM manage_admin WHERE username ="'.$_POST['username'].'" AND password = "'.$_POST['password'].'"';
 $result = mysqli_query($connect,$sql);
 $numrows = mysqli_num_rows($result);
 $objResult = mysqli_fetch_array($result,MYSQLI_ASSOC);
@@ -14,7 +14,7 @@ if($numrows==0){
 		</script>";
 }else{
     
-	$_SESSION["AdminID"] = $objResult["AdminID"];
+	$_SESSION["adminID"] = $objResult["adminID"];
             session_write_close();
             header("location:home.php");
 		

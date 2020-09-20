@@ -1,6 +1,6 @@
 <?php
 session_start();
-	if($_SESSION['AdminID'] == "")
+	if($_SESSION['adminID'] == "")
 	{
 		echo "
 		<script>
@@ -102,7 +102,7 @@ session_start();
 				  </div>
                 </div>
                 <div style="text-align: center;">
-                <input type="submit" class="btn btn-outline-primary btn-lg " value="Add admin">
+                <input type="submit" class="btn btn-outline-primary btn-lg " value="Add new schedule">
                 </div>
                 <br>
               </form>

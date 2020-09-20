@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 session_start();
-	if($_SESSION['AdminID'] == "")
+	if($_SESSION['adminID'] == "")
 	{
 		echo "
 		<script>
@@ -34,7 +34,7 @@ session_start();
               <div class="col-md-4">
                 <br>
 		         <div class="form-group shadow-textarea">
- 		            <textarea class="form-control z-depth-1 " id="exampleFormControlTextarea6" rows="3" placeholder="News update ..."></textarea>
+ 		            <textarea class="form-control z-depth-1 " id="exampleFormControlTextarea6" rows="3" placeholder="Term and Conditions update ..."></textarea>
                 </div>
                 <div style="text-align:center">
                 <input type="submit" class="btn btn-primary btn-lg" value="SAVE">

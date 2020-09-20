@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 session_start();
-	if($_SESSION['AdminID'] == "")
+	if($_SESSION['adminID'] == "")
 	{
 		echo "
 		<script>
