@@ -75,11 +75,11 @@ html {
           <div class="col-md-4"></div>        
           <div class="col-md-4">
               <div class="card-body text-center">
-                <h3>Administration Signin</h3><br>
+                <h3>Administration Log in</h3><br>
                 <div>
-                  <input type="text" name="username" class="input" placeholder="Username" require>
+                  <input type="text" name="username" class="input" placeholder="Username" required>
                   <br>
-                  <input type="password" name="password" class="input" placeholder="Password" require>
+                  <input type="password" name="password" class="input" placeholder="Password" required>
                 </div>
                 <br>
                 <input type="submit" class="button" value="LOG IN">
