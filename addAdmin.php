@@ -44,43 +44,48 @@ session_start();
               <div class="row">
                   <div class="col-md-4"></div>
                   <div class="box col-md-4">
-                        <form action="admin.php">
+                        <form action="addAdmin2.php" method="post">
                             <br>
                             <div class="form-group">
 				                <label class="control-label col-sm-4">Name:</label>
 				                <div class="col-sm-10">          
-					                <input type="text" name="Name">
+					                <input type="text" name="name" required >
 				                </div>
                             </div>
                             <div class="form-group">
 				                <label class="control-label col-sm-4">Surname:</label>
 				                <div class="col-sm-10">          
-					                <input type="text" name="Surname">
+					                <input type="text" name="surname" required >
 				                </div>
                             </div>
                             <div class="form-group">
 				                <label class="control-label col-sm-4">Username:</label>
 				                <div class="col-sm-10">          
-					                <input type="text" name="Username">
+					                <input type="text" name="username" required >
 				                </div>
                             </div>
                             <div class="form-group">
 				                <label class="control-label col-sm-4">Password:</label>
 				                <div class="col-sm-10">          
-					                <input type="password" name="Password">
+					                <input type="password" name="password" required >
 				                </div>
                             </div>
                             <div style="text-align: center;">
                                 <input type="submit" class="btn btn-outline-primary btn-lg" value="Add new admin">
                             </div>
-                             <br>
+                            <br>
                         </form>
+                        <div style="text-align: center;">
+                            <a href="admin.php">
+                                <button class="btn btn-outline-primary btn-lg" >Back</button>
+                            </a>
+                        </div>
+                        <br>
                   </div>
                   <div class="col-md-4"></div>
               </div>
           </div>
       </div>
-      
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
