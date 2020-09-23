@@ -22,6 +22,27 @@ session_start();
     <!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <style>
+       .head{
+        background-color: #4b8b9e;
+        color: white;
+      }
+      table {
+        width: 1120px; 
+        font-size: 30px;
+        border: 3px solid black;
+        border-collapse: collapse;
+        text-align: left;
+      }
+      th, td {
+        border: 2px solid black;
+        border-collapse: collapse;
+        width: 140px;
+        padding: 5px;
+        text-align: left;
+        font-size: 20px;
+      }
+    </style>
   </head>
   <body>
   <div>
@@ -41,6 +62,64 @@ session_start();
 		      <div class="col-md-4"></div>
 	      </div>
     </div>
+    <div class="container">
+            <div class="row">
+              <div class="col-md-0"></div>
+              <div class="col-md-12">
+              <?php
+include  'config.php';
+
+$sqladmin = 'SELECT * FROM schedule   ORDER BY scheduleID';
+$resultadmin = mysqli_query($connect,$sqladmin);
+echo '<br>';
+echo '<table>';
+echo '<tr class="head"><td>';
+echo "Exam Date";
+echo '</td><td>';
+echo "Time Exam";
+echo '</td><td>';
+echo "Start Date";
+echo '</td><td>';
+echo "End Date";
+echo '</td><td>';
+echo 'Getting Result';
+echo '</td><td>';
+echo "Time";
+echo '</td><td>';
+echo "Applicant";
+echo '</td><td>';
+echo "Faculty";
+echo '</td><td>';
+echo "Note";
+echo '</td></tr>';
+while($row= mysqli_fetch_array( $resultadmin, MYSQLI_ASSOC)){
+echo '<tr>';
+echo '</tr><td>';
+echo "$row[examDate]".'<br>';
+echo '</td><td>';
+echo "$row[timeExam]".'<br>';
+echo '</td><td>';
+echo "$row[startDate]".'<br>';
+echo '</td><td>';
+echo "$row[endDate]".'<br>';
+echo '</td><td>';
+echo "$row[getDate]".'<br>';
+echo '</td><td>';
+echo "$row[timeGet]".'<br>';
+echo '</td><td>';
+echo "$row[applicantS]"."$row[applicantG]".'<br>';
+echo '</td><td>';
+echo "$row[faculty]".'<br>';
+echo '</td><td>';
+echo "$row[note]".'<br>';
+echo '</td></tr>';}
+echo '</table>';
+echo '<br><br>';
+?>
+              </div>
+              <div class="col-md-0"></div>
+            </div>
+          </div>
   </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
