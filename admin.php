@@ -22,6 +22,41 @@ session_start();
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <style>
+      .head{
+        background-color: #4b8b9e;
+        color: white;
+      }
+      table {
+        width: 532px; 
+        font-size: 30px;
+        border: 3px solid black;
+        border-collapse: collapse;
+        text-align: left;
+      }
+      th, td {
+        border: 2px solid black;
+        border-collapse: collapse;
+        width: 133px;
+        padding: 5px;
+        text-align: left;
+        font-size: 20px;
+      }
+      .modal-content{
+        border:1px solid green;
+display: table;
+margin: 0 auto;
+width: 300px;
+      }
+      body.modal-open .modal {
+    display: flex !important;
+    height: 100%;
+} 
+
+body.modal-open .modal .modal-dialog {
+    margin: auto;
+}
+      </style>
   </head>
   <body>
       <div>
@@ -41,6 +76,67 @@ session_start();
               <div class="col-md-4"></div>
             </div>
           </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-6">
+              <?php
+include  'config.php';
+
+$sqladmin = 'SELECT * FROM manage_admin   ORDER BY adminID';
+$resultadmin = mysqli_query($connect,$sqladmin);
+echo '<br>';
+echo '<table>';
+echo '<tr class="head"><td>';
+echo "Name";
+echo '</td><td>';
+echo "Surname";
+echo '</td><td>';
+echo "Username";
+echo '</td><td>';
+echo "Password";
+echo '</td><td>';
+echo 'Edit';
+echo '</td></tr>';
+while($row= mysqli_fetch_array( $resultadmin, MYSQLI_ASSOC)){
+echo '<tr>';
+echo '</tr><td>';
+echo "$row[name]".'<br>';
+echo '</td><td>';
+echo "$row[surname]".'<br>';
+echo '</td><td>';
+echo "$row[username]".'<br>';
+echo '</td><td>';
+echo "$row[password]".'<br>';
+echo '</td><td>';
+echo '<a  href="updateAdmin.php?adminID='.$row['adminID'].'&name='.$row['name'].'&surname='.$row['surname'].'&username='.$row['username'].'&password='.$row['password'].'" >Edit </a>';
+echo "<button data-toggle='modal' data-target='#myModal'>Edit</button> "; 
+echo '</td></tr>';}
+echo '</table>';
+?>
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+          </div>
+           <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title" style="text-align: left;">UPDATE</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+        <div class="modal-body">
+          <?php
+          include 'updateAdmin.php';
+          ?>
+        </div>
+      </div>
+    </div>
+  </div>
       </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
