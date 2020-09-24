@@ -75,11 +75,6 @@ session_start();
                             </div>
                             <br>
                         </form>
-                        <div style="text-align: center;">
-                            <a href="admin.php">
-                                <button class="btn btn-outline-primary btn-lg" >Back</button>
-                            </a>
-                        </div>
                         <br>
                   </div>
                   <div class="col-md-4"></div>
