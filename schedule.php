@@ -1,15 +1,5 @@
 <?php
 include 'header.php';
-session_start();
-	if($_SESSION['adminID'] == "")
-	{
-		echo "
-		<script>
-		alert('Please Login!');
-		window.location = 'index.php';
-		</script>";
-		exit();
-	}
 ?>
 <!doctype html>
 <html lang="en">
@@ -20,7 +10,8 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
        .head{
@@ -29,25 +20,27 @@ session_start();
       }
       table {
         width: 1120px; 
-        font-size: 30px;
-        border: 3px solid black;
+        border: 1px solid gray;
         border-collapse: collapse;
         text-align: left;
       }
-      th, td {
-        border: 2px solid black;
+      th{
         border-collapse: collapse;
         width: 140px;
         padding: 5px;
         text-align: left;
-        font-size: 20px;
+        font-size: 15px;
+      }
+      td{
+        border: 1px solid gray;
+        font-size: 10px;
       }
     </style>
   </head>
   <body>
   <div>
     <div>
-      <h1 class="display-1">SCHEDULE</h1>
+      <h1 class="display-2">SCHEDULE</h1>
     </div>
     <div class="container">
 	      <div class="row">
@@ -62,62 +55,155 @@ session_start();
 		      <div class="col-md-4"></div>
 	      </div>
     </div>
+    <br>
     <div class="container">
             <div class="row">
               <div class="col-md-0"></div>
               <div class="col-md-12">
-              <?php
-include  'config.php';
+                <table class="table datatable ">
+                  <thead class="head">
+                    <tr>
+                      <th>Exam Date</th>
+                      <th>Time Exam</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Getting Result</th>
+                      <th>Applicant</th>
+                      <th>Faculty</th>
+                      <th>Note</th>
+                      <th>Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include  'config.php';
 
-$sqladmin = 'SELECT * FROM schedule   ORDER BY scheduleID';
-$resultadmin = mysqli_query($connect,$sqladmin);
-echo '<br>';
-echo '<table>';
-echo '<tr class="head"><td>';
-echo "Exam Date";
-echo '</td><td>';
-echo "Time Exam";
-echo '</td><td>';
-echo "Start Date";
-echo '</td><td>';
-echo "End Date";
-echo '</td><td>';
-echo 'Getting Result';
-echo '</td><td>';
-echo "Time";
-echo '</td><td>';
-echo "Applicant";
-echo '</td><td>';
-echo "Faculty";
-echo '</td><td>';
-echo "Note";
-echo '</td></tr>';
-while($row= mysqli_fetch_array( $resultadmin, MYSQLI_ASSOC)){
-echo '<tr>';
-echo '</tr><td>';
-echo "$row[examDate]".'<br>';
-echo '</td><td>';
-echo "$row[timeExam]".'<br>';
-echo '</td><td>';
-echo "$row[startDate]".'<br>';
-echo '</td><td>';
-echo "$row[endDate]".'<br>';
-echo '</td><td>';
-echo "$row[getDate]".'<br>';
-echo '</td><td>';
-echo "$row[timeGet]".'<br>';
-echo '</td><td>';
-echo "$row[applicantS]"."$row[applicantG]".'<br>';
-echo '</td><td>';
-echo "$row[faculty]".'<br>';
-echo '</td><td>';
-echo "$row[note]".'<br>';
-echo '</td></tr>';}
-echo '</table>';
-echo '<br><br>';
-?>
+                    $sqladmin = 'SELECT * FROM schedule   ORDER BY scheduleID';
+                    $resultadmin = mysqli_query($connect,$sqladmin);
+                    while($row= mysqli_fetch_array( $resultadmin, MYSQLI_ASSOC)){
+                    ?>
+                    <tr>
+                      <td> <?php echo "$row[examDate]" ?></td>
+                      <td> <?php echo "$row[timeExam]"."-"."$row[totime]"?></td>
+                      <td> <?php echo "$row[startDate]" ?></td>
+                      <td> <?php echo "$row[endDate]" ?></td>
+                      <td> <?php echo "$row[getDate]" ?></td>
+                      <td> <?php echo "$row[applicantS]"."<br>"."$row[applicantG]" ?></td>
+                      <td> <?php echo "$row[coc]"."<br>"."$row[fht]"."<br>"."$row[fis]"."<br>"."$row[fte]" ?></td>
+                      <td> <?php echo "$row[note]" ?></td>
+                      <td>
+                        <div >
+                        <a href="#" class="edit-schedule btn btn-info btn-lg"
+                     
+                      data-examDate="<?php echo $row['examDate']?>"
+                      data-timeExam="<?php echo $row['timeExam']?>"
+                      data-totime="<?php echo $row['totime']?>"
+                      data-startDate="<?php echo $row['startDate']?>"
+                      data-endDate="<?php echo $row['endDate']?>"
+                      data-getDate="<?php echo $row['getDate']?>"
+                      data-applicantS="<?php echo $row['applicantS']?>"
+                      data-applicantG="<?php echo $row['applicantG']?>"
+                      data-coc="<?php echo $row['coc']?>"
+                      data-fht="<?php echo $row['fht']?>"
+                      data-fis="<?php echo $row['fis']?>"
+                      data-fte="<?php echo $row['fte']?>"
+                      data-note="<?php echo $row['note']?>">Edit
+                          </a>
+                        </div>
+                        <br>
+                        <div>
+                        <a href="">
+                      <button type="button" name="button" class="btn btn-danger btn-lg">Delete</button>
+                          </a>
+                          </div>
+                      </td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
+                  </tbody>
+                </table>
               </div>
-              <div class="col-md-0"></div>
+              <div class="col-md-0"></div> 
+            </div>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="formEditSchedule">
+            <div class="modal-dialog">
+              <form action="updateSchedule.php" method="post" >
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <!-- <button type="button" class="close" data-dismis="modal" name="button">
+                    <span aria-hidden="true">&times;</span>
+                    </button> -->
+                  </div>
+                  <div class="modal-body">
+                  <div class="form-group">
+				  <label class="control-label col-sm-4">Exam date:</label>
+				  <div class="col-sm-10">          
+					<input type="date" name="examDate" value="YYYY-MM-DD" id="examDate" min="2020-01-01" max="3000-31-12" required>
+				  </div>
+                </div>
+                <div class="form-group">
+				  <label class="control-label col-sm-4">Time:</label>
+				  <div class="col-sm-10">          
+                  <input type="time" name="timeExam" id="timeExam" required>
+          </div>
+                </div>
+                <div class="form-group">
+				  <label class="control-label col-sm-4">To:</label>
+				  <div class="col-sm-10">          
+                  <input type="time" name="totime" id="totime" required>
+				  </div>
+                </div>
+                <div class="form-group">
+				  <label class="control-label col-sm-8">Start registeration date:</label>
+				  <div class="col-sm-10">          
+					<input type="date" name="startDate" id="startDate"  value="YYYY-MM-DD" min="2020-01-01" max="3000-31-12" required>
+				  </div>
+                </div>
+                <div class="form-group">
+				  <label class="control-label col-sm-8">End registeration date:</label>
+				  <div class="col-sm-10">          
+					<input type="date" name="endDate" id="endDate"  value="YYYY-MM-DD" min="2020-01-01" max="3000-31-12" required>
+				  </div>
+                </div>
+                <div class="form-group">
+				  <label class="control-label col-sm-8">Getting result:</label>
+				  <div class="col-sm-10">          
+					<input type="date" name="getDate" id="getDate" value="YYYY-MM-DD" min="2020-01-01" max="3000-31-12" required>
+				  </div>
+                </div>
+                <div class="form-group">
+				  <label class="control-label col-sm-8">Applicant type:</label>
+				  <div class="col-sm-10">          
+                <input type="checkbox" name="applicantS" id="applicantS"  value="Student" >&nbsp;Student <br>
+                <input type="checkbox" name="applicantG" id="applicantG" value="General">&nbsp;General
+				  </div>
+                </div>
+                <div class="form-group">
+				  <label class="control-label col-sm-4">Faculty:</label>
+				  <div class="col-sm-10">          
+                <input type="checkbox" name="coc" id="coc" value="College of Computing">&nbsp;College of Computing<br>
+                <input type="checkbox" name="fht" id="fht" value="Hospitality and Tourism">&nbsp;Hospitality and Tourism <br>
+                <input type="checkbox" name="fis" id="fis" value="International Studies">&nbsp;International Studies<br>
+                <input type="checkbox" name="fte" id="fte "value="Technology and Evironment">&nbsp;Technology and Evironment
+				  </div>
+                </div>
+                <div class="form-group">
+				  <label class="control-label col-sm-4">Note:</label>
+				  <div class="col-sm-10">          
+                  <input type="text" name="note" id="note" placeholder="About student ID" required>
+				  </div>
+                </div>
+                  </div> 
+                  <div class="modal-footer">
+                  <div style="text-align: center;">
+                <input type="submit" class="btn btn-success btn-lg " value="Save">
+                </div>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
   </div>
@@ -126,5 +212,60 @@ echo '<br><br>';
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function(){
+        $('.datatable').datatable();
+      });
+      $('.edit-schedule').click(function(){
+         //get data from edit btn
+            var examDate=$(this).attr('data-examDate');
+            var timeExam=$(this).attr('data-timeExam');
+            var totime=$(this).attr('data-totime');
+            var startDate=$(this).attr('data-startDate');
+            var endDate=$(this).attr('data-endDate');
+            var getDate=$(this).attr('data-getDate');
+
+// check it was checked?
+            var applicantS = $(this).attr('data-applicantS');
+              if(applicantS === "Student"){
+                document.getElementById("applicantS").checked = true;
+              }else{
+                document.getElementById("applicantS").checked = false;
+              }
+
+
+            var applicantG=$(this).attr('data-applicantG');
+            if(applicantG === "General"){
+                document.getElementById("applicantG").checked = true;
+              }else{
+                document.getElementById("applicantG").checked = false;
+              }
+
+
+            var coc=$(this).attr('data-coc');
+            var fht=$(this).attr('data-fht');
+            var fis=$(this).attr('data-fis');
+            var fte=$(this).attr('data-fte');
+            var note=$(this).attr('data-note');
+
+           
+          // set value to modal
+          $('#examDate').val(examDate);
+          $('#timeExam').val(timeExam);
+          $('#totime').val(totime);
+          $('#startDate').val(startDate);
+          $('#endDate').val(endDate);
+          $('#getDate').val(getDate);
+          // $('#applicantS').val(applicantS);
+          $('#applicantG').val(applicantG);
+          $('#coc').val(coc);
+          $('#fht').val(fht);
+          $('#fis').val(fis);
+          $('#fte').val(fte);
+          $('#note').val(note);
+
+          $('#formEditSchedule').modal('show');
+        });
+    </script>
   </body>
 </html>
