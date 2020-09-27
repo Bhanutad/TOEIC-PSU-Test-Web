@@ -2,17 +2,20 @@
 include  'config.php';
 $examDate = $_POST['examDate'];
 $timeExam = $_POST['timeExam'];
+$totime = $_POST['totime'];
 $startDate = $_POST['startDate'];
 $endDate = $_POST['endDate'];
 $getDate = $_POST['getDate'];
-$timeGet = $_POST['timeGet'];
 $applicantS = $_POST['applicantS'];
 $applicantG = $_POST['applicantG'];
-$faculty = $_POST['faculty'];
+$coc = $_POST['coc'];
+$fht = $_POST['fht'];
+$fis = $_POST['fis'];
+$fte = $_POST['fte'];
 $note = $_POST['note'];
 
-                $sql = "INSERT INTO schedule ( scheduleID, examDate, timeExam, startDate, endDate, getDate, timeGet, applicantS, applicantG, faculty, note)
-				VALUES ('', '$examDate', '$timeExam', '$startDate', '$endDate', '$getDate', '$timeGet', '$applicantS', '$applicantG', '$faculty', '$note')";
+                $sql = "INSERT INTO schedule ( scheduleID, examDate, timeExam, totime, startDate, endDate, getDate, applicantS, applicantG, coc, fht, fis, fte, note)
+				VALUES ('', '$examDate', '$timeExam', '$totime', '$startDate', '$endDate', '$getDate', '$applicantS', '$applicantG', '$coc', '$fht', '$fis', '$fte','$note')";
                 $result = mysqli_query($connect,$sql);
                 mysqli_close($connect);
 
