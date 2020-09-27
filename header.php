@@ -1,3 +1,15 @@
+<?php
+session_start();
+	if($_SESSION['adminID'] == "")
+	{
+		echo "
+		<script>
+		alert('Please Login!');
+		window.location = 'index.php';
+		</script>";
+		exit();
+	}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -18,7 +30,14 @@
 			<div id="main-nav" class="collapse navbar-collapse">
 				<ul class="navbar-nav ml-auto">
 					<li><a href="schedule.php" class="nav-item nav-link">Schedule</a></li>
-					<li><a href="term.php" class="nav-item nav-link">Terms & Conditions</a></li>
+					<li><a href="term.php" class="nav-item nav-link">Terms&Conditions</a></li>
+					<li class="dropdown">
+						<a href="#" class="nav-item nav-link" data-toggle="dropdown">News</a>
+						<div class="dropdown-menu">
+							<a href="news.php" class="dropdown-item">News</a>
+							<a href="" class="dropdown-item">Manage Application Type</a>
+						</div>
+					</li>
 					<li class="dropdown">
 						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Applicant</a>
 						<div class="dropdown-menu">
@@ -28,7 +47,7 @@
 						</div>
 					</li>
 					<li class="dropdown">
-						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Admin Management</a>
+						<a href="#" class="nav-item nav-link" data-toggle="dropdown">AdminManagement</a>
 						<div class="dropdown-menu">
 							<a href="admin.php" class="dropdown-item">Admin Management</a>
 							<a href="logout.php" class="dropdown-item">LOG OUT</a>
