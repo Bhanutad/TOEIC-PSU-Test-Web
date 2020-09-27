@@ -1,14 +1,5 @@
 <?php
-session_start();
-	if($_SESSION['adminID'] == "")
-	{
-		echo "
-		<script>
-		alert('Please Login!');
-		window.location = 'index.php';
-		</script>";
-		exit();
-	}
+include 'header.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -20,13 +11,8 @@ session_start();
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <style>
-        .container-fluid{
-            padding: 30px;
-            text-align: center;
-            background-color: #4b8b9e;
-            color:white;
-        }
         .box{
           margin-top: 10px;
           margin-bottom: 10px;
@@ -37,8 +23,8 @@ session_start();
   </head>
   <body>
   <div>
-        <div class="container-fluid">
-          <h1 >Add new Schedule</h1>
+        <div>
+          <h1 class="display-2">Add new Schedule</h1>
         </div>
           <div class="container">
             <div class="row">
@@ -56,6 +42,12 @@ session_start();
 				  <label class="control-label col-sm-4">Time:</label>
 				  <div class="col-sm-10">          
                   <input type="time" name="timeExam" required>
+          </div>
+                </div>
+                <div class="form-group">
+				  <label class="control-label col-sm-4">To:</label>
+				  <div class="col-sm-10">          
+                  <input type="time" name="totime" required>
 				  </div>
                 </div>
                 <div class="form-group">
@@ -77,28 +69,20 @@ session_start();
 				  </div>
                 </div>
                 <div class="form-group">
-				  <label class="control-label col-sm-4">Time:</label>
-				  <div class="col-sm-10">          
-                  <input type="time" name="timeGet" required>
-				  </div>
-                </div>
-                <div class="form-group">
 				  <label class="control-label col-sm-8">Applicant type:</label>
 				  <div class="col-sm-10">          
-                <input type="checkbox" name="applicantS" value="Student" required>&nbsp;Student <br>
-                <input type="checkbox" name="applicantG" value="/General" required>&nbsp;General
+                <input type="checkbox" name="applicantS" value="Student">&nbsp;Student <br>
+                <input type="checkbox" name="applicantG" value="General">&nbsp;General
 				  </div>
                 </div>
                 <div class="form-group">
 				  <label class="control-label col-sm-4">Faculty:</label>
 				  <div class="col-sm-10">          
-                    <select name="faculty" required>
-                      <option value="">-- Select --</option>  
-                      <option value="CoC">College of Computing</option>  
-                      <option value="FHT">Hospitality and Tourism</option> 
-                      <option value="FIS">International Studies</option>   
-                      <option value="FTE">Technology and Evironment</option>  
-                    </select> 
+                 <input type="checkbox" >&nbsp;College of Computing<br>
+                <input type="checkbox" name="coc" value="College of Computing">&nbsp;College of Computing<br>
+                <input type="checkbox" name="fht" value="Hospitality and Tourism">&nbsp;Hospitality and Tourism <br>
+                <input type="checkbox" name="fis" value="International Studies">&nbsp;International Studies<br>
+                <input type="checkbox" name="fte" value="Technology and Evironment">&nbsp;Technology and Evironment
 				  </div>
                 </div>
                 <div class="form-group">
@@ -112,12 +96,6 @@ session_start();
                 </div>
                 <br>
               </form>
-              <div style="text-align: center;">
-                            <a href="schedule.php">
-                                <button class="btn btn-outline-primary btn-lg" >Back</button>
-                            </a>
-                        </div>
-                        <br>
               </div>
               <div class="col-md-4"></div>
             </div>
