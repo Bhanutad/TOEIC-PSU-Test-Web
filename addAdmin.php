@@ -1,14 +1,5 @@
 <?php
-session_start();
-	if($_SESSION['adminID'] == "")
-	{
-		echo "
-		<script>
-		alert('Please Login!');
-		window.location = 'index.php';
-		</script>";
-		exit();
-	}
+include 'header.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -20,13 +11,8 @@ session_start();
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <style>
-        .container-fluid{
-            padding: 30px;
-            text-align: center;
-            background-color: #4b8b9e;
-            color:white;
-        }
         .box{
           margin-top: 10px;
           margin-bottom: 10px;
@@ -37,8 +23,8 @@ session_start();
   </head>
   <body>
       <div>
-          <div class="container-fluid">
-              <h1>Add new Admin</h1>
+          <div>
+              <h1 class="display-2">Add new Admin</h1>
           </div>
           <div class="container">
               <div class="row">
