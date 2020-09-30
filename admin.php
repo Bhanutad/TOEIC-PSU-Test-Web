@@ -34,14 +34,9 @@ include 'header.php';
         border: 1px solid gray;
         font-size: 10px;
       }
-      /* body.modal-open .modal {
-    display: flex !important;
-    height: 100%;
+      body.modal-open .modal {
+      margin-top: 60px;
 } 
-
-body.modal-open .modal .modal-dialog {
-    margin: auto;
-} */
       </style>
   </head>
   <body>
@@ -94,7 +89,8 @@ body.modal-open .modal .modal-dialog {
                         <div >
 
                     
-                        <a href="#" class="edit-admin btn btn-info btn-lg"
+                        <a href="#" class="edit-admin btn btn-warning btn-lg"
+                      data-adminID="<?php echo $row['adminID']?>"
                       data-name="<?php echo $row['name']?>"
                       data-surname="<?php echo $row['surname']?>"
                       data-username="<?php echo $row['username']?>"
@@ -103,9 +99,11 @@ body.modal-open .modal .modal-dialog {
                         </div>
                         <br>
                         <div>
-                        <a href="">
-                      <button type="button" name="button" class="btn btn-danger btn-lg">Delete</button>
-                          </a>
+                          <?php
+                          echo "<a href='deleteAdmin.php?adminID=$row[adminID]'class='btn btn-danger btn-lg' 
+                          onclick=\"return confirm('Are you sure to delete this record? !!!')\">
+                          delete
+                          </a>";?>
                           </div>
                       </td>
                     </tr>
@@ -130,6 +128,12 @@ body.modal-open .modal .modal-dialog {
                     </button> -->
                   </div>
                   <div class="modal-body">
+                  <div class="form-group" type="hidden">
+				                <label class="control-label col-sm-4">AdminID:</label>
+				                <div class="col-sm-10">          
+					                <input type="text" name="adminID" id="adminID" readonly>
+                        </div>
+                  </div>
                             <div class="form-group">
 				                <label class="control-label col-sm-4">Name:</label>
 				                <div class="col-sm-10">          
@@ -157,6 +161,7 @@ body.modal-open .modal .modal-dialog {
                 </div>
                   <div class="modal-footer">
                   <div style="text-align: center;">
+                <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
                 <input type="submit" class="btn btn-success btn-lg " value="Save">
                 </div>
                   </div>
@@ -177,11 +182,13 @@ body.modal-open .modal .modal-dialog {
       $('.edit-admin').click(function(){
        
           // // get data from edit btn
+            var adminID= $ (this).attr('data-adminID');
             var name= $ (this).attr('data-name');
             var surname= $ (this).attr('data-surname');
             var username= $ (this).attr('data-username');
             var password = $(this).attr('data-password');
           // // set value to modal
+            $('#adminID').val(adminID);
             $('#name').val(name);
             $('#surname').val(surname);
             $('#username').val(username);
