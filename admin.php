@@ -123,12 +123,9 @@ include 'header.php';
               <form action="updateAdmin.php" method="post" >
                 <div class="modal-content">
                   <div class="modal-header">
-                    <!-- <button type="button" class="close" data-dismis="modal" name="button">
-                    <span aria-hidden="true">&times;</span>
-                    </button> -->
                   </div>
                   <div class="modal-body">
-                  <div class="form-group" type="hidden">
+                  <div class="form-group">
 				                <label class="control-label col-sm-4">AdminID:</label>
 				                <div class="col-sm-10">          
 					                <input type="text" name="adminID" id="adminID" readonly>
