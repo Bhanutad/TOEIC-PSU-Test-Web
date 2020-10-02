@@ -20,10 +20,6 @@ include 'header.php';
             border: 5px solid black;
             text-align: left;
         }
-        .buttonn{
-          border-color: black;
-        }
-        * { border-radius:0 !important; }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: inherit;
     font-family:"Raleway", sans-serif;
@@ -78,26 +74,6 @@ p { margin: 10px 0; }
 		box-shadow: none;
 		outline: 0 none;
 	}
-.btn {
-  font-family:"Raleway", sans-serif;
-  font-weight: 300;
-  font-size: 1em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  border: none;
-  border: .15em solid black;
-  padding: 0.65em 1.3em;
-}
-.btn-xs {
-	font-size: .80em;
-	padding: .25em .75em;
-}
-
-.btn-default {
-  border-color: #d9d9d9;
-  background-image: linear-gradient(#ffffff, #f2f2f2);
-}
-	.btn-default:hover { background: linear-gradient(#f2f2f2, #e6e6e6); }
     </style>
   </head>
   <body>
@@ -107,8 +83,8 @@ p { margin: 10px 0; }
         </div>
         <div class="container">
           <div class="row">
-            <div class="col-md-2"></div>
-            <div class="box col-md-8">
+            <div class="col-md-3"></div>
+            <div class="box col-md-6">
               <form action="addNews2.php" method="post">
                 <br>
               <div id="editparent">
@@ -158,7 +134,7 @@ p { margin: 10px 0; }
               </form>
               <br>
           </div>
-          <div class="col-md-2"></div>
+          <div class="col-md-3"></div>
         </div>
     </div>
     <!-- Optional JavaScript -->
