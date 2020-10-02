@@ -35,6 +35,9 @@ include 'header.php';
         border: 1px solid gray;
         font-size: 10px;
       }
+      body.modal-open .modal {
+      margin-top: 20px;
+} 
     </style>
   </head>
   <body>
@@ -78,9 +81,9 @@ include 'header.php';
                     <?php
                     include  'config.php';
 
-                    $sqladmin = 'SELECT * FROM schedule   ORDER BY scheduleID';
-                    $resultadmin = mysqli_query($connect,$sqladmin);
-                    while($row= mysqli_fetch_array( $resultadmin, MYSQLI_ASSOC)){
+                    $sqlschedule = 'SELECT * FROM schedule   ORDER BY scheduleID';
+                    $resulschedule = mysqli_query($connect,$sqlschedule);
+                    while($row= mysqli_fetch_array( $resulschedule, MYSQLI_ASSOC)){
                     ?>
                     <tr>
                       <td> <?php echo "$row[examDate]" ?></td>
@@ -93,8 +96,9 @@ include 'header.php';
                       <td> <?php echo "$row[note]" ?></td>
                       <td>
                         <div >
-                        <a href="#" class="edit-schedule btn btn-info btn-lg"
-                     
+                        <a href="#" class="edit-schedule btn btn-warning btn-lg"
+                      
+                      data-scheduleID="<?php echo $row['scheduleID']?>"
                       data-examDate="<?php echo $row['examDate']?>"
                       data-timeExam="<?php echo $row['timeExam']?>"
                       data-totime="<?php echo $row['totime']?>"
@@ -112,9 +116,11 @@ include 'header.php';
                         </div>
                         <br>
                         <div>
-                        <a href="">
-                      <button type="button" name="button" class="btn btn-danger btn-lg">Delete</button>
-                          </a>
+                        <?php
+                          echo "<a href='deleteSchedule.php?scheduleID=$row[scheduleID]'class='btn btn-danger btn-lg' 
+                          onclick=\"return confirm('Are you sure to delete this record? !!!')\">
+                          delete
+                          </a>";?>
                           </div>
                       </td>
                     </tr>
@@ -133,11 +139,14 @@ include 'header.php';
               <form action="updateSchedule.php" method="post" >
                 <div class="modal-content">
                   <div class="modal-header">
-                    <!-- <button type="button" class="close" data-dismis="modal" name="button">
-                    <span aria-hidden="true">&times;</span>
-                    </button> -->
                   </div>
                   <div class="modal-body">
+                  <div class="form-group" type="hidden">
+				                <label class="control-label col-sm-4">Schedule ID:</label>
+				                <div class="col-sm-10">          
+					                <input type="text" name="scheduleID" id="scheduleID" readonly>
+                        </div>
+                  </div>
                   <div class="form-group">
 				  <label class="control-label col-sm-4">Exam date:</label>
 				  <div class="col-sm-10">          
@@ -187,7 +196,7 @@ include 'header.php';
                 <input type="checkbox" name="coc" id="coc" value="College of Computing">&nbsp;College of Computing<br>
                 <input type="checkbox" name="fht" id="fht" value="Hospitality and Tourism">&nbsp;Hospitality and Tourism <br>
                 <input type="checkbox" name="fis" id="fis" value="International Studies">&nbsp;International Studies<br>
-                <input type="checkbox" name="fte" id="fte "value="Technology and Evironment">&nbsp;Technology and Evironment
+                <input type="checkbox" name="fte" id="fte" value="Technology and Evironment">&nbsp;Technology and Evironment<br>
 				  </div>
                 </div>
                 <div class="form-group">
@@ -199,6 +208,7 @@ include 'header.php';
                   </div> 
                   <div class="modal-footer">
                   <div style="text-align: center;">
+                  <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
                 <input type="submit" class="btn btn-success btn-lg " value="Save">
                 </div>
                   </div>
@@ -218,12 +228,14 @@ include 'header.php';
       });
       $('.edit-schedule').click(function(){
          //get data from edit btn
+            var scheduleID=$(this).attr('data-scheduleID');
             var examDate=$(this).attr('data-examDate');
             var timeExam=$(this).attr('data-timeExam');
             var totime=$(this).attr('data-totime');
             var startDate=$(this).attr('data-startDate');
             var endDate=$(this).attr('data-endDate');
             var getDate=$(this).attr('data-getDate');
+            var note=$(this).attr('data-note');
 
 // check it was checked?
             var applicantS = $(this).attr('data-applicantS');
@@ -233,7 +245,6 @@ include 'header.php';
                 document.getElementById("applicantS").checked = false;
               }
 
-
             var applicantG=$(this).attr('data-applicantG');
             if(applicantG === "General"){
                 document.getElementById("applicantG").checked = true;
@@ -241,22 +252,44 @@ include 'header.php';
                 document.getElementById("applicantG").checked = false;
               }
 
-
             var coc=$(this).attr('data-coc');
-            var fht=$(this).attr('data-fht');
-            var fis=$(this).attr('data-fis');
-            var fte=$(this).attr('data-fte');
-            var note=$(this).attr('data-note');
+            if(coc === "College of Computing"){
+                document.getElementById("coc").checked = true;
+              }else{
+                document.getElementById("coc").checked = false;
+              }
 
-           
+            var fht=$(this).attr('data-fht');
+            if(fht === "Hospitality and Tourism"){
+                document.getElementById("fht").checked = true;
+              }else{
+                document.getElementById("fht").checked = false;
+              }
+
+            var fis=$(this).attr('data-fis');
+            if(fis === "International Studies"){
+                document.getElementById("fis").checked = true;
+              }else{
+                document.getElementById("fis").checked = false;
+              }
+
+            var fte=$(this).attr('data-fte');
+            if(fte === "Technology and Evironment"){
+                document.getElementById("fte").checked = true;
+              }
+              else{
+                document.getElementById("fte").checked = false;
+              }
+
           // set value to modal
+          $('#scheduleID').val(scheduleID);
           $('#examDate').val(examDate);
           $('#timeExam').val(timeExam);
           $('#totime').val(totime);
           $('#startDate').val(startDate);
           $('#endDate').val(endDate);
           $('#getDate').val(getDate);
-          // $('#applicantS').val(applicantS);
+          $('#applicantS').val(applicantS);
           $('#applicantG').val(applicantG);
           $('#coc').val(coc);
           $('#fht').val(fht);
