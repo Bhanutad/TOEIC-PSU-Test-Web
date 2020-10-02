@@ -34,6 +34,9 @@ include 'header.php';
         border: 1px solid gray;
         font-size: 10px;
       }
+      body.modal-open .modal {
+      margin-top: 60px;
+} 
   </style>
   </head>
   <body>
@@ -90,9 +93,11 @@ include 'header.php';
                         </div>
                         <br>
                         <div>
-                        <a href="">
-                      <button type="button" name="button" class="btn btn-danger btn-lg">Delete</button>
-                          </a>
+                        <?php
+                          echo "<a href='deleteNews.php?newsID=$row[newsID]'class='btn btn-danger btn-lg' 
+                          onclick=\"return confirm('Are you sure to delete this record? !!!')\">
+                          delete
+                          </a>";?>
                           </div>
                       </td>
                     </tr>
@@ -137,6 +142,7 @@ include 'header.php';
                 </div>
                   <div class="modal-footer">
                   <div style="text-align: center;">
+                  <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
                 <input type="submit" class="btn btn-success btn-lg " value="Save">
                 </div>
                   </div>
