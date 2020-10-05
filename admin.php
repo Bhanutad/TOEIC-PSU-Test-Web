@@ -60,8 +60,8 @@ include 'header.php';
           <br>
     <div class="container">
             <div class="row">
-              <div class="col-md-3"></div>
-              <div class="col-md-6">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
                 <table class="table datatable">
                   <thead class="head">
                     <tr>
@@ -96,15 +96,13 @@ include 'header.php';
                       data-username="<?php echo $row['username']?>"
                       data-password="<?php echo $row['password']?>">Edit
                           </a>
-                        </div>
-                        <br>
-                        <div>
+                          &nbsp;&nbsp;&nbsp;
                           <?php
                           echo "<a href='deleteAdmin.php?adminID=$row[adminID]'class='btn btn-danger btn-lg' 
                           onclick=\"return confirm('Are you sure to delete this record? !!!')\">
                           delete
                           </a>";?>
-                          </div>
+                        </div>
                       </td>
                     </tr>
                     <?php
@@ -113,7 +111,7 @@ include 'header.php';
                   </tbody>
                 </table>
               </div>
-              <div class="col-md-3"></div> 
+              <div class="col-md-2"></div> 
             </div>
           </div> 
       </div>
