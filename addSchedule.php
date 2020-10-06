@@ -77,8 +77,7 @@ include 'header.php';
                 </div>
                 <div class="form-group">
 				  <label class="control-label col-sm-4">Faculty:</label>
-				  <div class="col-sm-10">          
-                 <input type="checkbox" >&nbsp;College of Computing<br>
+				  <div class="col-sm-10"> 
                 <input type="checkbox" name="coc" value="College of Computing">&nbsp;College of Computing<br>
                 <input type="checkbox" name="fht" value="Hospitality and Tourism">&nbsp;Hospitality and Tourism <br>
                 <input type="checkbox" name="fis" value="International Studies">&nbsp;International Studies<br>
