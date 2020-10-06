@@ -73,7 +73,7 @@ $note = $_POST['note'];
 
                 if($result){
                     echo "<script type='text/javascript'>";
-                    echo "alert('Successfully updated admin.');";
+                    echo "alert('Successfully updated schedule.');";
                     echo "window.location = 'schedule.php'; ";
                     echo "</script>";
                     }

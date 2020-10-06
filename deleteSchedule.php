@@ -11,7 +11,7 @@ session_start();
 
                 if($result){
                     echo "<script type='text/javascript'>";
-                    echo "alert('Successfully deleted admin.');";
+                    echo "alert('Successfully deleted schedule.');";
                     echo "window.location = 'schedule.php'; ";
                     echo "</script>";
                     }
