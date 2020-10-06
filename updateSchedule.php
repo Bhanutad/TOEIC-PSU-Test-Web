@@ -43,13 +43,6 @@ if (isset($_POST['fis'])) {
 	$fis= "";
 }
 
-if (isset($_POST['fis'])) {
-    $fis = $_POST['fis'];
-	$fis = "International Studies";
-} else {
-	$fis= "";
-}
-
 if (isset($_POST['fte'])) {
     $fte = $_POST['fte'];
 	$fte = "Technology and Evironment";
