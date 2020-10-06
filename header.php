@@ -31,18 +31,19 @@ session_start();
 				<ul class="navbar-nav ml-auto">
 					<li><a href="schedule.php" class="nav-item nav-link">Schedule</a></li>
 					<li><a href="term.php" class="nav-item nav-link">Terms&Conditions</a></li>
-					<li class="dropdown">
+					<li><a href="news.php" class="nav-item nav-link">News</a></li>
+					<!-- <li class="dropdown">
 						<a href="#" class="nav-item nav-link" data-toggle="dropdown">News</a>
 						<div class="dropdown-menu">
 							<a href="news.php" class="dropdown-item">News</a>
 							<a href="" class="dropdown-item">Manage Application Type</a>
 						</div>
-					</li>
+					</li> -->
 					<li class="dropdown">
 						<a href="#" class="nav-item nav-link" data-toggle="dropdown">Applicant</a>
 						<div class="dropdown-menu">
 							<a href="studentlist.php" class="dropdown-item">Student Name List</a>
-							<a href="studentscore.php" class="dropdown-item">Student Score</a>
+							<!-- <a href="studentscore.php" class="dropdown-item">Student Score</a> -->
 							<a href="general.php" class="dropdown-item">General</a>
 						</div>
 					</li>
