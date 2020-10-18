@@ -68,7 +68,6 @@ include 'header.php';
                       <th>Name</th>
                       <th>Surname</th>
                       <th>Username</th>
-                      <th>Password</th>
                       <th>Edit</th>
                     </tr>
                   </thead>
@@ -84,7 +83,6 @@ include 'header.php';
                       <td> <?php echo "$row[name]" ?></td>
                       <td> <?php echo "$row[surname]"?></td>
                       <td> <?php echo "$row[username]"?></td>
-                      <td> <?php echo "$row[password]"?></td>
                       <td>
                         <div >
 
@@ -93,8 +91,7 @@ include 'header.php';
                       data-adminID="<?php echo $row['adminID']?>"
                       data-name="<?php echo $row['name']?>"
                       data-surname="<?php echo $row['surname']?>"
-                      data-username="<?php echo $row['username']?>"
-                      data-password="<?php echo $row['password']?>">Edit
+                      data-username="<?php echo $row['username']?>">Edit
                           </a>
                           &nbsp;&nbsp;&nbsp;
                           <?php
@@ -147,12 +144,6 @@ include 'header.php';
 					                <input type="text" name="username" id="username" required >
 				                </div>
                             </div>
-                            <div class="form-group">
-				                <label class="control-label col-sm-4">Password:</label>
-				                <div class="col-sm-10">          
-					                <input type="password" name="password" id="password" required >
-				                </div>
-                            </div>
                 </div>
                   <div class="modal-footer">
                   <div style="text-align: center;">
@@ -181,13 +172,11 @@ include 'header.php';
             var name= $ (this).attr('data-name');
             var surname= $ (this).attr('data-surname');
             var username= $ (this).attr('data-username');
-            var password = $(this).attr('data-password');
           // // set value to modal
             $('#adminID').val(adminID);
             $('#name').val(name);
             $('#surname').val(surname);
             $('#username').val(username);
-            $('#password').val(password);
             
           $('#formEditAdmin').modal('show');
         });
