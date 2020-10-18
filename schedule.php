@@ -81,7 +81,7 @@ include 'header.php';
                     <?php
                     include  'config.php';
                     
-                    $sqlschedule = 'SELECT * FROM schedule   ORDER BY scheduleID WHERE deleteStatus = 1';
+                    $sqlschedule = 'SELECT * FROM schedule WHERE deleteStatus = 1';
                     $resulschedule = mysqli_query($connect,$sqlschedule);
                     while($row= mysqli_fetch_array( $resulschedule, MYSQLI_ASSOC)){
                     ?>
