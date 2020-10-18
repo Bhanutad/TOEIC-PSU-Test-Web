@@ -4,7 +4,8 @@ session_start();
 		$scheduleID = $_GET["scheduleID"];
        
 
-        $sql = "DELETE FROM schedule WHERE scheduleID=$scheduleID ";
+        $sql = "UPDATE schedule SET deleteStatus = 0
+                WHERE scheduleID='$scheduleID' ";
                 $result = mysqli_query($connect,$sql);
                 mysqli_close($connect);
 
