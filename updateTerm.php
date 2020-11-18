@@ -1,22 +1,9 @@
-<script>
-
-
-s
-
-</script>
-
 <?php 
 include  'config.php';
 $termID = $_POST['termID'];
 $text = $_POST['text'];
-
-
-
 $text =  mysqli_real_escape_string($connect,$text);
  
-
-
-
                 $sql = "UPDATE term SET  text ='$text'
                 WHERE termID = '$termID'";
                 $result = mysqli_query($connect,$sql);
