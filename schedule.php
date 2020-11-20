@@ -111,7 +111,8 @@ include 'header.php';
                       data-fht="<?php echo $row['fht']?>"
                       data-fis="<?php echo $row['fis']?>"
                       data-fte="<?php echo $row['fte']?>"
-                      data-note="<?php echo $row['note']?>">Edit
+                      data-note="<?php echo $row['note']?>"
+                      data-active="<?php echo $row['activeStatus']?>">Edit
                           </a>
                         </div>
                         <br>
@@ -203,9 +204,18 @@ include 'header.php';
 				  <label class="control-label col-sm-4">Note:</label>
 				  <div class="col-sm-10">          
                   <input type="text" name="note" id="note" placeholder="About student ID" required>
+          </div>
+          </div> 
+          <div class="form-group">
+				  <label class="control-label col-sm-4">Active Status:</label>
+				  <div class="col-sm-10">   
+                  <input type="radio" id="no" name="activeStatus" value="male">
+                  <label for="male">Non-active</label> &nbsp;&nbsp;
+                  <input type="radio" id="yes" name="activeStatus" value="female">
+                  <label for="female">Active</label>
 				  </div>
                 </div>
-                  </div> 
+                  
                   <div class="modal-footer">
                   <div style="text-align: center;">
                   <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cancel</button>
@@ -281,6 +291,14 @@ include 'header.php';
                 document.getElementById("fte").checked = false;
               }
 
+              var active=$(this).attr('data-active');
+            if(active === "0"){
+                document.getElementById("no").checked = true;
+              }
+              else{
+                document.getElementById("yes").checked = true;
+              }
+
           // set value to modal
           $('#scheduleID').val(scheduleID);
           $('#examDate').val(examDate);
@@ -296,6 +314,7 @@ include 'header.php';
           $('#fis').val(fis);
           $('#fte').val(fte);
           $('#note').val(note);
+          $('#active').val(active);
 
           $('#formEditSchedule').modal('show');
         });

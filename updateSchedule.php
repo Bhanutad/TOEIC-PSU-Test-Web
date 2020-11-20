@@ -52,6 +52,13 @@ if (isset($_POST['fte'])) {
 
 $note = $_POST['note'];
 
+if (isset($_POST['activeStatus'])) {
+    $activeStatus = $_POST['activeStatus'];
+	$activeStatus= "1";
+} else {
+	$activeStatus = "";
+}
+
                 $sql = "UPDATE schedule SET  
                 examDate ='$examDate' ,
                 timeExam='$timeExam' , 
@@ -65,7 +72,8 @@ $note = $_POST['note'];
                 fht='$fht' ,
                 fis='$fis' ,
                 fte='$fte' ,
-                note='$note' 
+                note='$note',
+                activeStatus='$activeStatus'
                 WHERE scheduleID ='$scheduleID' ";
                 $result = mysqli_query($connect,$sql);
                 mysqli_close($connect);
