@@ -85,7 +85,7 @@ p { margin: 10px 0; }
           <div class="row">
             <div class="col-md-3"></div>
             <div class="box col-md-6">
-              <form action="addNews2.php" method="post">
+              <form action="addNews2.php" method="post" enctype="multipart/form-data">
                 <br>
               <div id="editparent">
               <div class="form-group">
@@ -124,11 +124,11 @@ p { margin: 10px 0; }
     <form class="sm-form">
   			                <div class="file-field ">
     			             <div class="btn btn-outline-primary  waves-effect float-left">
-      				                <input type="file" name="file">
+      				                <input type="file" name="fileupload">
 				                </div>
                         </div>
                         <div style="text-align: center;">
-                                <input type="submit" class="btn btn-outline-primary btn-lg" value="Add news">
+                                <input type="submit" name="submit" class="btn btn-outline-primary btn-lg" value="Add news">
                             </div>
                         </form>
               </form>
