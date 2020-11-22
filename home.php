@@ -75,9 +75,8 @@ include 'header.php';
                       <td> <?php echo "$row[lastname]" ?></td>
                       <td>
                         <div >
-
-                    
                         <a href="#" class="view-student btn btn-success btn-lg"
+                      data-examID="<?php echo $row['examID']?>"
                       data-examDate="<?php echo $row['examDate']?>"
                       data-timeDate="<?php echo $row['timeDate']?>"
                       data-applicant="<?php echo $row['applicant']?>"
@@ -87,11 +86,12 @@ include 'header.php';
                       data-gender="<?php echo $row['gender']?>"
                       data-dob="<?php echo $row['dob']?>"
                       data-email="<?php echo $row['email']?>"
-                      data-phone="<?php echo $row['phone']?>">View
+                      data-phone="<?php echo $row['phone']?>"
+                      data-image="<?php echo $row['image']?>">View
                           </a>
 
                           <?php
-                          echo "<a href='updateStatus.php?examID=$row[examID]'class='btn btn-primary btn-lg' 
+                          echo "<a href='updateStatus.php?examID=$row[examID]'class='btn btn-warning btn-lg' 
                           onclick=\"return confirm('Are you sure to confirm? !!!')\">
                           Confirm
                           </a>           ";
@@ -115,22 +115,27 @@ include 'header.php';
       <!-- Modal -->
       <div class="modal fade" id="formView">
             <div class="modal-dialog">
+            <form action="form.php" method="post" >
                 <div class="modal-content">
                   <div class="modal-header">
-                  Firstname:<input type="text" id="name" disabled>
-                  Lastname:<input type="text" id="lastname" disabled>
+                  <input type="text" name="examID" id="examID" readonly hidden> 
+                  Firstname:<input type="text" id="name" readonly>
+                  Lastname:<input type="text" id="lastname" readonly>
                   </div>
                   <div class="modal-body"><pre>
-                    ExamDate:             <input type="text" id="examDate" disabled> <input type="text" id="timeDate" disabled><br>
-                    Applicant type:       <input type="text" id="applicant" disabled><br>
-                    ID card/ passport No: <input type="text" id="idCard" disabled><br>
-                    Date of birth:        <input type="text" id="dob" disabled><br>
-                    Gender:               <input type="text" id="gender" disabled><br>
-                    Email:                <input type="text" id="email" disabled><br>
-                    Phone:                <input type="text" id="phone" disabled> </pre>
+                    ExamDate:             <input type="text" id="examDate" readonly> <input type="text" id="timeDate" readonly><br>
+                    Applicant type:       <input type="text" id="applicant" readonly><br>
+                    ID card/ passport No: <input type="text" id="idCard" readonly><br>
+                    Date of birth:        <input type="text" id="dob" readonly><br>
+                    Gender:               <input type="text" id="gender" readonly><br>
+                    Email:                <input type="text" id="email" readonly><br>
+                    Phone:                <input type="text" id="phone" readonly> </pre>
                 </div>
                   <div class="modal-footer">
-                  <div style="text-align: center;">
+                  <div >
+                  <input type="submit" class="btn btn-primary btn-lg " value="Check">
+                </div>
+                <div style="text-align: center;">
                 <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
                 </div>
                   </div>
@@ -150,6 +155,7 @@ include 'header.php';
       $('.view-student').click(function(){
        
           // // get data from edit btn
+            var examID= $ (this).attr('data-examID');
             var examDate= $ (this).attr('data-examDate');
             var timeDate= $ (this).attr('data-timeDate');
             var applicant= $ (this).attr('data-applicant');
@@ -161,6 +167,7 @@ include 'header.php';
             var email= $ (this).attr('data-email');
             var phone = $(this).attr('data-phone');
           // // set value to modal
+            $('#examID').val(examID);
             $('#examDate').val(examDate);
             $('#timeDate').val(timeDate);
             $('#applicant').val(applicant);
