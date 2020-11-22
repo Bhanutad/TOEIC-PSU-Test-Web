@@ -59,12 +59,13 @@ include 'header.php';
           </div>
           <div class="container">
             <div class="row">
-              <div class="col-md-3"></div>
-              <div class="col-md-6">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
                 <br>
                 <table class="table datatable">
                   <thead class="head">
                     <tr>
+                      <th>Date time</th>
                       <th>News</th>
                       <th>File</th>
                       <th>Edit</th>
@@ -74,31 +75,31 @@ include 'header.php';
                     <?php
                     include  'config.php';
 
-                    $sqladmin = 'SELECT * FROM news   ORDER BY newsID';
-                    $resultadmin = mysqli_query($connect,$sqladmin);
-                    while($row= mysqli_fetch_array( $resultadmin, MYSQLI_ASSOC)){
+                    $sqlnews = 'SELECT * FROM news   ORDER BY newsID';
+                    $resultnews = mysqli_query($connect,$sqlnews);
+                    while($row= mysqli_fetch_array( $resultnews, MYSQLI_ASSOC)){
                     ?>
                     <tr>
+                      <td> <?php echo "$row[date]" ?></td>
                       <td> <?php echo "$row[head]" ?></td>
-                      <td> <?php echo "$row[file]"?></td>
+                      <td> <?php echo "<a target='_blank' href='view.php?id=".$row['newsID']."'>".$row['file']."</a><img src='image/".$row['file']."' height='268' width='180'>";?></td>
                       <td>
                         <div >
 
-                        <!-- echo "<a href='#' >$row[file]</a> ".'<br>';  -->
                         <a href="#" class="edit-news btn btn-info btn-lg"
+                        data-newsID="<?php echo $row['newsID']?>"
                       data-head="<?php echo $row['head']?>"
                       data-text="<?php echo $row['text']?>"
                       data-file="<?php echo $row['file']?>">Edit 
                           </a>
-                        </div>
-                        <br>
-                        <div>
-                        <?php
+                          &nbsp;&nbsp;&nbsp;
+                          <?php
                           echo "<a href='deleteNews.php?newsID=$row[newsID]'class='btn btn-danger btn-lg' 
                           onclick=\"return confirm('Are you sure to delete this record? !!!')\">
                           delete
                           </a>";?>
-                          </div>
+                        </div>
+                        <br>
                       </td>
                     </tr>
                     <?php
@@ -107,21 +108,23 @@ include 'header.php';
                   </tbody>
                 </table>
               </div>
-              <div class="col-md-3"></div> 
+              <div class="col-md-2"></div> 
             </div>
           </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="formEditNews">
             <div class="modal-dialog">
-              <form action=".php" method="post" >
+              <form action="updateNews.php" method="post" >
                 <div class="modal-content">
                   <div class="modal-header">
-                    <!-- <button type="button" class="close" data-dismis="modal" name="button">
-                    <span aria-hidden="true">&times;</span>
-                    </button> -->
                   </div>
                   <div class="modal-body">
+                  <div class="form-group">
+				                <label class="control-label col-sm-4">News ID:</label>
+				                <div class="col-sm-10">          
+					                <input type="text" name="newsID" id="newsID" readonly>
+				                </div>
                             <div class="form-group">
 				                <label class="control-label col-sm-4">Head news:</label>
 				                <div class="col-sm-10">          
@@ -131,14 +134,16 @@ include 'header.php';
                             <div class="form-group">
 				                <label class="control-label col-sm-4">News:</label>
 				                <div class="col-sm-10">          
-					                <textarea name="text" id="text" cols="30" rows="10"></textarea>
+					                <textarea name="text" id="text" cols="50" rows="10"></textarea>
 				                </div>
                             </div>
                             <div class="form-group">
 				                <label class="control-label col-sm-4">File:</label>
 				                <div class="col-sm-10">          
-					                <input type="text" name="file" id="file" required >
+					                <input type="text" name="fileupload" id="file" >
 				                </div>
+                </div>
+                </div>
                 </div>
                   <div class="modal-footer">
                   <div style="text-align: center;">
@@ -146,9 +151,7 @@ include 'header.php';
                 <input type="submit" class="btn btn-success btn-lg " value="Save">
                 </div>
                   </div>
-                </div>
               </form>
-            </div>
           </div>
   </div>
     <!-- Optional JavaScript -->
@@ -163,10 +166,13 @@ include 'header.php';
       $('.edit-news').click(function(){
        
        // // get data from edit btn
+       
+         var newsID= $ (this).attr('data-newsID');
          var head= $ (this).attr('data-head');
          var text= $ (this).attr('data-text');
          var file= $ (this).attr('data-file');
        // // set value to modal
+         $('#newsID').val(newsID);
          $('#head').val(head);
          $('#text').val(text);
          $('#file').val(file);
