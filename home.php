@@ -63,7 +63,7 @@ include 'header.php';
                     <?php
                     include  'config.php';
 
-                    $sqlexam = 'SELECT * FROM exam WHERE statusShow = 1';
+                    $sqlexam = 'SELECT * FROM exam WHERE statusShow = 0';
                     $resultexam = mysqli_query($connect,$sqlexam);
                     while($row= mysqli_fetch_array( $resultexam, MYSQLI_ASSOC)){
                     ?>

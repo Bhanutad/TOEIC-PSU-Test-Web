@@ -1,7 +1,7 @@
 <?php 
 include  'config.php';
 $examID = $_GET['examID'];
-                $sql = "UPDATE exam SET statusShow = 0
+                $sql = "UPDATE exam SET statusShow = 1
                 WHERE examID ='$examID' ";
                 $result = mysqli_query($connect,$sql);
                 mysqli_close($connect);
