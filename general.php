@@ -45,10 +45,38 @@ include 'header.php';
              <h1 class="display-2">General name list</h1>
           </div>
           <br>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-1"></div>
+              <div class="col-md-10">
+              <form name="frmSearch" method="get" action="general.php">
+                <tr>
+                  <th>
+                    <input name="txtKeyword" type="text" id="txtKeyword" placeholder="All">
+                    <input type="submit" value="Search"></th>
+                </tr>
+              </form>
+              </div>
+              <div class="col-md-1"></div>
+            </div>
+          </div>
     <div class="container">
             <div class="row">
               <div class="col-md-1"></div>
               <div class="col-md-10">
+              <?php
+              include 'config.php';
+              if (isset($_GET['txtKeyword'])) {
+                $txtKeyword = $_GET['txtKeyword'];
+                $txtKeyword = "txtKeyword";
+              } else {
+                 $txtKeyword = "";
+                }
+if($txtKeyword == "" )
+	{
+        $sqlgeneral = 'SELECT * FROM general   ORDER BY generalID';
+        $resultgeneral = mysqli_query($connect,$sqlgeneral);
+	?>
                 <table class="table datatable">
                   <thead class="head">
                     <tr>
@@ -103,6 +131,67 @@ include 'header.php';
                     <?php
                     }
                     ?>
+                    <?php
+}else if($txtKeyword != "" )
+    {
+     include  'config.php';
+     $sqlgeneral = "SELECT * FROM general WHERE
+        (name LIKE '%".$_GET["txtKeyword"]."%' or idCard LIKE '%".$_GET["txtKeyword"]."%' )";
+                    $resultgeneral = mysqli_query($connect,$sqlgeneral);
+                    ?>
+                  <table class="table datatable">
+                  <thead class="head">
+                    <tr>
+                     <th>National</th>
+                      <th>Firstname</th>
+                      <th>Lastname</th>
+                      <th>Phone</th>
+                      <th>Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    while($row= mysqli_fetch_array( $resultgeneral, MYSQLI_ASSOC)){
+                    ?>
+                    <tr>
+                    <td> <?php echo "$row[national]"?></td>
+                      <td> <?php echo "$row[name]"?></td>
+                      <td> <?php echo "$row[lastname]" ?></td>
+                      <td> <?php echo "$row[phone]"?></td>
+                      <td>
+                        <div >
+
+                        <a href="#" class="view-general btn btn-success btn-lg"
+                      data-generalID="<?php echo $row['generalID']?>"
+                      data-username="<?php echo $row['username']?>"
+                      data-idCard="<?php echo $row['idCard']?>"
+                      data-national="<?php echo $row['national']?>"
+                      data-name="<?php echo $row['name']?>"
+                      data-lastname="<?php echo $row['lastname']?>"
+                      data-dob="<?php echo $row['dob']?>"
+                      data-gender="<?php echo $row['gender']?>"
+                      data-faculty="<?php echo $row['faculty']?>"
+                      data-major="<?php echo $row['major']?>"
+                      data-email="<?php echo $row['email']?>"
+                      data-phone="<?php echo $row['phone']?>">View
+                          </a>
+                          &nbsp;&nbsp;&nbsp;
+
+                          <?php
+                          echo "<a href='deleteGeneral.php?generalID=$row[generalID]'class='btn btn-danger btn-lg' 
+                          onclick=\"return confirm('Are you sure to delete this record? !!!')\">
+                          delete
+                          </a>";?>
+                        </div>
+                      </td>
+                    </tr>
+                    <?php
+	                    }
+	                  ?>
+	                </table>                
+ <?php                   
+}
+?>
                   </tbody>
                 </table>
               </div>
@@ -113,29 +202,33 @@ include 'header.php';
       <!-- Modal -->
       <div class="modal fade" id="formView">
             <div class="modal-dialog">
+            <form action="history.php" method="post" >
                 <div class="modal-content">
                   <div class="modal-header"></div>
                   <div class="modal-body"><pre>
-                    GeneralID:            <input type="text" id="generalID" disabled><br>
-                    Username:             <input type="text" id="username" disabled><br>
-                    ID card/ passport No: <input type="text" id="idCard" disabled><br>
-                    National:             <input type="text" id="national" disabled><br>
-                    Firstname:            <input type="text" id="name" disabled><br>
-                    Lastname:             <input type="text" id="lastname" disabled><br>
-                    Date of birth:        <input type="text" id="dob" disabled><br>
-                    Gender:               <input type="text" id="gender" disabled><br>
-                    Email:                <input type="text" id="email" disabled><br>
-                    Phone:                <input type="text" id="phone" disabled> </pre>
+                    GeneralID:            <input type="text" id="generalID" readonly><br>
+                    Username:             <input type="text" id="username" readonly><br>
+                    ID card/ passport No: <input type="text" name="idCard" id="idCard" readonly><br>
+                    National:             <input type="text" id="national" readonly><br>
+                    Firstname:            <input type="text" id="name" readonly><br>
+                    Lastname:             <input type="text" id="lastname" readonly><br>
+                    Date of birth:        <input type="text" id="dob" readonly><br>
+                    Gender:               <input type="text" id="gender" readonly><br>
+                    Email:                <input type="text" id="email" readonly><br>
+                    Phone:                <input type="text" id="phone" readonly> </pre>
                 </div>
                   <div class="modal-footer">
+                  <div >
+                  <input type="submit" class="btn btn-primary btn-lg " value="Check">
+                </div>
                   <div style="text-align: center;">
                 <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Close</button>
                 </div>
                   </div>
                 </div>
-            </div>
+              </form>
           </div>
-  </div>
+        </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
