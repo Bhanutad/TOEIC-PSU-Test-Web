@@ -4,12 +4,10 @@ $adminID = $_POST['adminID'];
 $name = $_POST['name'];
 $surname= $_POST['surname'];
 $username= $_POST['username'];
-$password= $_POST['password'];
                 $sql = "UPDATE manage_admin SET  
                 name ='$name' ,
                 surname='$surname' , 
-                username='$username' ,
-                password='$password' 
+                username='$username' 
                 WHERE adminID ='$adminID' ";
                 $result = mysqli_query($connect,$sql);
                 mysqli_close($connect);
