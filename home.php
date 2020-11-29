@@ -44,10 +44,39 @@ include 'header.php';
           <div>
              <h1 class="display-1">Waiting for approve</h1>
           </div>
+          <br>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-0"></div>
+              <div class="col-md-12">
+              <form name="frmSearch" method="get" action="home.php">
+                <tr>
+                  <th>
+                    <input name="txtKeyword" type="text" id="txtKeyword" placeholder="All">
+                    <input type="submit" value="Search"></th>
+                </tr>
+              </form>
+              </div>
+              <div class="col-md-0"></div>
+            </div>
+          </div>
     <div class="container">
             <div class="row">
               <div class="col-md-0"></div>
               <div class="col-md-12">
+              <?php
+              include 'config.php';
+              if (isset($_GET['txtKeyword'])) {
+                $txtKeyword = $_GET['txtKeyword'];
+                $txtKeyword = "txtKeyword";
+              } else {
+                 $txtKeyword = "";
+                }
+if($txtKeyword == "" )
+	{
+        $sqlexam = 'SELECT * FROM exam ';
+        $resultexam = mysqli_query($connect,$sqlexam);
+	?>
                 <table class="table datatable">
                   <thead class="head">
                     <tr>
@@ -61,10 +90,6 @@ include 'header.php';
                   </thead>
                   <tbody>
                     <?php
-                    include  'config.php';
-
-                    $sqlexam = 'SELECT * FROM exam WHERE statusShow = 0';
-                    $resultexam = mysqli_query($connect,$sqlexam);
                     while($row= mysqli_fetch_array( $resultexam, MYSQLI_ASSOC)){
                     ?>
                     <tr>
@@ -105,6 +130,71 @@ include 'header.php';
                     <?php
                     }
                     ?>
+                    <?php
+}else if($txtKeyword != "" )
+    {
+     include  'config.php';
+     $sqlexam = "SELECT * FROM exam WHERE
+        (name LIKE '%".$_GET["txtKeyword"]."%' or idCard LIKE '%".$_GET["txtKeyword"]."%' )";
+                    $resultexam = mysqli_query($connect,$sqlexam);
+                    ?>
+                  <table class="table datatable">
+                  <thead class="head">
+                    <tr>
+                      <th>Examination Date</th>
+                      <th>Applicant type</th>
+                      <th>ID card/Passport No.</th>
+                      <th>Firstname</th>
+                      <th>Lastname</th>
+                      <th>Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <?php
+                    while($row= mysqli_fetch_array( $resultexam, MYSQLI_ASSOC)){
+                    ?>
+                    <tr>
+                      <td> <?php echo "$row[examDate]" ?></td>
+                      <td> <?php echo "$row[applicant]" ?></td>
+                      <td> <?php echo "$row[idCard]"?></td>
+                      <td> <?php echo "$row[name]" ?></td>
+                      <td> <?php echo "$row[lastname]" ?></td>
+                      <td>
+                        <div >
+                        <a href="#" class="view-student btn btn-success btn-lg"
+                      data-examID="<?php echo $row['examID']?>"
+                      data-examDate="<?php echo $row['examDate']?>"
+                      data-timeDate="<?php echo $row['timeDate']?>"
+                      data-applicant="<?php echo $row['applicant']?>"
+                      data-idCard="<?php echo $row['idCard']?>"
+                      data-name="<?php echo $row['name']?>"
+                      data-lastname="<?php echo $row['lastname']?>"
+                      data-gender="<?php echo $row['gender']?>"
+                      data-dob="<?php echo $row['dob']?>"
+                      data-email="<?php echo $row['email']?>"
+                      data-phone="<?php echo $row['phone']?>"
+                      data-image="<?php echo $row['image']?>">View
+                          </a>
+
+                          <?php
+                          echo "<a href='updateStatus.php?examID=$row[examID]'class='btn btn-warning btn-lg' 
+                          onclick=\"return confirm('Are you sure to confirm? !!!')\">
+                          Confirm
+                          </a>           ";
+                          echo "<a href='deleteExam.php?examID=$row[examID]'class='btn btn-danger btn-lg' 
+                          onclick=\"return confirm('Are you sure to delete this record? !!!')\">
+                          Delete
+                          </a>";?>
+                        </div>
+                      </td>
+                    </tr>
+                    <?php
+	                    }
+	                  ?>
+	                </table>                
+ <?php                   
+}
+?>
                   </tbody>
                 </table>
               </div>
