@@ -1,3 +1,15 @@
+<?php
+session_start();
+	if($_SESSION['adminID'] == "")
+	{
+		echo "
+		<script>
+		alert('Please Login!');
+		window.location = 'index.php';
+		</script>";
+		exit();
+	}
+?>
 <!doctype html>
 <html lang="en">
   <head>
