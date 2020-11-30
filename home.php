@@ -108,6 +108,10 @@ if($txtKeyword == "" )
                       data-idCard="<?php echo $row['idCard']?>"
                       data-name="<?php echo $row['name']?>"
                       data-lastname="<?php echo $row['lastname']?>"
+                      data-national="<?php echo $row['national']?>"
+                      data-studentID="<?php echo $row['studentID']?>"
+                      data-faculty="<?php echo $row['faculty']?>"
+                      data-major="<?php echo $row['major']?>"
                       data-gender="<?php echo $row['gender']?>"
                       data-dob="<?php echo $row['dob']?>"
                       data-email="<?php echo $row['email']?>"
@@ -135,7 +139,7 @@ if($txtKeyword == "" )
     {
      include  'config.php';
      $sqlexam = "SELECT * FROM exam WHERE
-        (name LIKE '%".$_GET["txtKeyword"]."%' or idCard LIKE '%".$_GET["txtKeyword"]."%' )";
+        (name LIKE '%".$_GET["txtKeyword"]."%' or lastname LIKE '%".$_GET["txtKeyword"]."%' or applicant LIKE '%".$_GET["txtKeyword"]."%' or studentID LIKE '%".$_GET["txtKeyword"]."%' or idCard LIKE '%".$_GET["txtKeyword"]."%' )";
                     $resultexam = mysqli_query($connect,$sqlexam);
                     ?>
                   <table class="table datatable">
@@ -169,6 +173,10 @@ if($txtKeyword == "" )
                       data-idCard="<?php echo $row['idCard']?>"
                       data-name="<?php echo $row['name']?>"
                       data-lastname="<?php echo $row['lastname']?>"
+                      data-national="<?php echo $row['national']?>"
+                      data-studentID="<?php echo $row['studentID']?>"
+                      data-faculty="<?php echo $row['faculty']?>"
+                      data-major="<?php echo $row['major']?>"
                       data-gender="<?php echo $row['gender']?>"
                       data-dob="<?php echo $row['dob']?>"
                       data-email="<?php echo $row['email']?>"
@@ -213,13 +221,15 @@ if($txtKeyword == "" )
                   Lastname:<input type="text" id="lastname" readonly>
                   </div>
                   <div class="modal-body"><pre>
-                    ExamDate:             <input type="text" id="examDate" readonly> <input type="text" id="timeDate" readonly><br>
-                    Applicant type:       <input type="text" id="applicant" readonly><br>
-                    ID card/ passport No: <input type="text" id="idCard" readonly><br>
+                    StudentID:            <input type="text" id="studentID" readonly><br>
+                    ID card/ passport No: <input type="text" name="idCard" id="idCard" readonly><br>
+                    National:             <input type="text" id="national" readonly><br>
                     Date of birth:        <input type="text" id="dob" readonly><br>
                     Gender:               <input type="text" id="gender" readonly><br>
+                    Faculty:              <input type="text" id="faculty" readonly><br>
+                    Major:                <input type="text" id="major" readonly><br>
                     Email:                <input type="text" id="email" readonly><br>
-                    Phone:                <input type="text" id="phone" readonly> </pre>
+                    Phone:                <input type="text" id="phone" readonly></pre>
                 </div>
                   <div class="modal-footer">
                   <div >
@@ -252,6 +262,10 @@ if($txtKeyword == "" )
             var idCard= $ (this).attr('data-idCard');
             var name= $ (this).attr('data-name');
             var lastname= $ (this).attr('data-lastname');
+            var national= $ (this).attr('data-national');
+            var studentID= $ (this).attr('data-studentID');
+            var faculty= $ (this).attr('data-faculty');
+            var major= $ (this).attr('data-major');
             var dob = $(this).attr('data-dob');
             var gender= $ (this).attr('data-gender');
             var email= $ (this).attr('data-email');
@@ -264,6 +278,10 @@ if($txtKeyword == "" )
             $('#idCard').val(idCard);
             $('#name').val(name);
             $('#lastname').val(lastname);
+            $('#national').val(national);
+            $('#studentID').val(studentID);
+            $('#faculty').val(faculty);
+            $('#major').val(major);
             $('#dob').val(dob);
             $('#gender').val(gender);
             $('#email').val(email);
