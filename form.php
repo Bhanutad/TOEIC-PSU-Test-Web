@@ -33,16 +33,18 @@
 
                     while($row= mysqli_fetch_array( $result, MYSQLI_ASSOC)){ 
                 ?>
-                    <table align="center" border = "1" cellpading="10" width="400" hight="500" id="HTMLtoPDF">
+                    <table align="center" border = "1" cellpading="10" width="450" hight="500" id="HTMLtoPDF">
                         <tr>
                             <td>
                                 <B>Test Date: </B> <?php echo $row['examDate'];?><br>
-                                <B>Name: </B> <?php echo $row['name'].'&nbsp;'.$row['lastname']?><br>
-                                <B>ID Card/Passport No:</B> <?php echo $row['idCard']?><br>
-                                <B>Gender: </B> <?php echo $row['gender']?>&nbsp;&nbsp;
-                                <B>Date of Birth: </B> <?php echo $row['dob']?><br>
-                                <B>Applicant Type: </B> <?php echo $row['applicant']?><br>
-                                <B>Receipt: </B><br> <?php echo "<img src='image/".$row['image']."' height='%' width='85%'>"; ?>
+                                <B>Name: </B> <?php echo $row['name'].'&nbsp;'.$row['lastname'].'&nbsp;'.'<B>Gender: </B> '.$row['gender']?><br>
+                                <B>Date of Birth: </B> <?php echo $row['dob'].'&nbsp;'.'<B>Mobile: </B> '.$row['phone']?><br>
+                                <B>Email: </B> <?php echo $row['email']?><br>
+                                <B>Applicant Type: </B> <?php echo $row['applicant'].'&nbsp;'.'<B>StudentID: </B> '.$row['studentID']?><br>
+                                <B>Faculry: </B> <?php echo $row['faculty'].'&nbsp;'.'<B>Major: </B> '.$row['major']?><br>
+                                <B>ID Card/Passport No: </B> <?php echo $row['idCard']?><br>
+                                <B>National: </B> <?php echo $row['national']?>&nbsp;&nbsp;<br>
+                                <B>Receipt: </B><br> <?php echo "<img src='image/".$row['image']."' height='%' width='75%'>"; ?>
                             </td>
                         </tr>
                     </table>
