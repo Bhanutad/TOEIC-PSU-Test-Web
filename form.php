@@ -36,7 +36,7 @@
                     <table align="center" border = "1" cellpading="10" width="450" hight="500" id="HTMLtoPDF">
                         <tr>
                             <td>
-                                <B>Test Date: </B> <?php echo $row['examDate'];?><br>
+                                <B>Exam Date: </B> <?php echo $row['examDate'];?><br>
                                 <B>Name: </B> <?php echo $row['name'].'&nbsp;'.$row['lastname'].'&nbsp;'.'<B>Gender: </B> '.$row['gender']?><br>
                                 <B>Date of Birth: </B> <?php echo $row['dob'].'&nbsp;'.'<B>Mobile: </B> '.$row['phone']?><br>
                                 <B>Email: </B> <?php echo $row['email']?><br>

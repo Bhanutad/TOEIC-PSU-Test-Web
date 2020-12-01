@@ -103,7 +103,7 @@ if($txtKeyword == "" )
                         <a href="#" class="view-student btn btn-success btn-lg"
                       data-examID="<?php echo $row['examID']?>"
                       data-examDate="<?php echo $row['examDate']?>"
-                      data-timeDate="<?php echo $row['timeDate']?>"
+                      data-timeExam="<?php echo $row['timeExam']?>"
                       data-applicant="<?php echo $row['applicant']?>"
                       data-idCard="<?php echo $row['idCard']?>"
                       data-name="<?php echo $row['name']?>"
@@ -168,7 +168,7 @@ if($txtKeyword == "" )
                         <a href="#" class="view-student btn btn-success btn-lg"
                       data-examID="<?php echo $row['examID']?>"
                       data-examDate="<?php echo $row['examDate']?>"
-                      data-timeDate="<?php echo $row['timeDate']?>"
+                      data-timeExam="<?php echo $row['timeExam']?>"
                       data-applicant="<?php echo $row['applicant']?>"
                       data-idCard="<?php echo $row['idCard']?>"
                       data-name="<?php echo $row['name']?>"
@@ -257,7 +257,7 @@ if($txtKeyword == "" )
           // // get data from edit btn
             var examID= $ (this).attr('data-examID');
             var examDate= $ (this).attr('data-examDate');
-            var timeDate= $ (this).attr('data-timeDate');
+            var timeExam= $ (this).attr('data-timeExam');
             var applicant= $ (this).attr('data-applicant');
             var idCard= $ (this).attr('data-idCard');
             var name= $ (this).attr('data-name');
@@ -273,7 +273,7 @@ if($txtKeyword == "" )
           // // set value to modal
             $('#examID').val(examID);
             $('#examDate').val(examDate);
-            $('#timeDate').val(timeDate);
+            $('#timeExam').val(timeExam);
             $('#applicant').val(applicant);
             $('#idCard').val(idCard);
             $('#name').val(name);
