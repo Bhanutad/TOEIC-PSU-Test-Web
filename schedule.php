@@ -63,6 +63,34 @@ include 'header.php';
             <div class="row">
               <div class="col-md-0"></div>
               <div class="col-md-12">
+              <form name="frmSearch" method="get" action="schedule.php">
+                <tr>
+                  <th>
+                    <input name="txtKeyword" type="text" id="txtKeyword" placeholder="All">
+                    <input type="submit" value="Search"></th>
+                </tr>
+              </form>
+              </div>
+              <div class="col-md-0"></div>
+            </div>
+          </div>
+    <div class="container">
+            <div class="row">
+              <div class="col-md-0"></div>
+              <div class="col-md-12">
+              <?php
+              include 'config.php';
+              if (isset($_GET['txtKeyword'])) {
+                $txtKeyword = $_GET['txtKeyword'];
+                $txtKeyword = "txtKeyword";
+              } else {
+                 $txtKeyword = "";
+                }
+if($txtKeyword == "" )
+	{
+        $sqlschedule = 'SELECT * FROM schedule ORDER BY examDate DESC';
+        $resultschedule = mysqli_query($connect,$sqlschedule);
+	?>
                 <table class="table datatable ">
                   <thead class="head">
                     <tr>
@@ -79,11 +107,7 @@ include 'header.php';
                   </thead>
                   <tbody>
                     <?php
-                    include  'config.php';
-                    
-                    $sqlschedule = 'SELECT * FROM schedule WHERE deleteStatus = 1';
-                    $resulschedule = mysqli_query($connect,$sqlschedule);
-                    while($row= mysqli_fetch_array( $resulschedule, MYSQLI_ASSOC)){
+                    while($row= mysqli_fetch_array( $resultschedule, MYSQLI_ASSOC)){
                     ?>
                     <tr>
                       <td> <?php echo "$row[examDate]" ?></td>
@@ -123,11 +147,98 @@ include 'header.php';
                           delete
                           </a>";?>
                           </div>
+                          <br>
+                          <div>
+                        <?php
+                          echo "<a href='namelist.php?scheduleID=$row[scheduleID]'class='btn btn-success btn-lg'>
+                          Name list
+                          </a>";?>
+                          </div>
                       </td>
                     </tr>
                     <?php
                     }
                     ?>
+                    <?php
+}else if($txtKeyword != "" )
+    {
+     include  'config.php';
+     $sqlschedule = "SELECT * FROM schedule WHERE
+        (examDate LIKE '%".$_GET["txtKeyword"]."%' ) ORDER BY examDate DESC";
+                    $resultschedule = mysqli_query($connect,$sqlschedule);
+                    ?>
+                      <table class="table datatable ">
+                  <thead class="head">
+                    <tr>
+                      <th>Exam Date</th>
+                      <th>Time Exam</th>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Getting Result</th>
+                      <th>Applicant</th>
+                      <th>Faculty</th>
+                      <th>Note</th>
+                      <th>Edit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    while($row= mysqli_fetch_array( $resultschedule, MYSQLI_ASSOC)){
+                    ?>
+                    <tr>
+                      <td> <?php echo "$row[examDate]" ?></td>
+                      <td> <?php echo "$row[timeExam]"."-"."$row[totime]"?></td>
+                      <td> <?php echo "$row[startDate]" ?></td>
+                      <td> <?php echo "$row[endDate]" ?></td>
+                      <td> <?php echo "$row[getDate]" ?></td>
+                      <td> <?php echo "$row[applicantS]"."<br>"."$row[applicantG]" ?></td>
+                      <td> <?php echo "$row[coc]"."<br>"."$row[fht]"."<br>"."$row[fis]"."<br>"."$row[fte]" ?></td>
+                      <td> <?php echo "$row[note]" ?></td>
+                      <td>
+                        <div >
+                        <a href="#" class="edit-schedule btn btn-warning btn-lg"
+                      
+                      data-scheduleID="<?php echo $row['scheduleID']?>"
+                      data-examDate="<?php echo $row['examDate']?>"
+                      data-timeExam="<?php echo $row['timeExam']?>"
+                      data-totime="<?php echo $row['totime']?>"
+                      data-startDate="<?php echo $row['startDate']?>"
+                      data-endDate="<?php echo $row['endDate']?>"
+                      data-getDate="<?php echo $row['getDate']?>"
+                      data-applicantS="<?php echo $row['applicantS']?>"
+                      data-applicantG="<?php echo $row['applicantG']?>"
+                      data-coc="<?php echo $row['coc']?>"
+                      data-fht="<?php echo $row['fht']?>"
+                      data-fis="<?php echo $row['fis']?>"
+                      data-fte="<?php echo $row['fte']?>"
+                      data-note="<?php echo $row['note']?>"
+                      data-active="<?php echo $row['activeStatus']?>">Edit
+                          </a>
+                        </div>
+                        <br>
+                        <div>
+                        <?php
+                          echo "<a href='deleteSchedule.php?scheduleID=$row[scheduleID]'class='btn btn-danger btn-lg' 
+                          onclick=\"return confirm('Are you sure to delete this record? !!!')\">
+                          delete
+                          </a>";?>
+                          </div>
+                          <br>
+                          <div>
+                        <?php
+                          echo "<a href='namelist.php?scheduleID=$row[scheduleID]'class='btn btn-success btn-lg'>
+                          Name list
+                          </a>";?>
+                          </div>
+                      </td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
+	                </table>                
+ <?php                   
+}
+?>
                   </tbody>
                 </table>
               </div>
