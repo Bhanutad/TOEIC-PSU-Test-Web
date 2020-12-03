@@ -41,7 +41,7 @@
                                 <B>Date of Birth: </B> <?php echo $row['dob'].'&nbsp;'.'<B>Mobile: </B> '.$row['phone']?><br>
                                 <B>Email: </B> <?php echo $row['email']?><br>
                                 <B>Applicant Type: </B> <?php echo $row['applicant'].'&nbsp;'.'<B>StudentID: </B> '.$row['studentID']?><br>
-                                <B>Faculry: </B> <?php echo $row['faculty'].'&nbsp;'.'<B>Major: </B> '.$row['major']?><br>
+                                <B>Faculty: </B> <?php echo $row['faculty'].'&nbsp;'.'<B>Major: </B> '.$row['major']?><br>
                                 <B>ID Card/Passport No: </B> <?php echo $row['idCard']?><br>
                                 <B>National: </B> <?php echo $row['national']?>&nbsp;&nbsp;<br>
                                 <B>Receipt: </B><br> <?php echo "<img src='image/".$row['image']."' height='%' width='75%'>"; ?>
