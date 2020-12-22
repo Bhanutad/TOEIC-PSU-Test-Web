@@ -88,7 +88,7 @@ include 'header.php';
                 }
 if($txtKeyword == "" )
 	{
-        $sqlschedule = 'SELECT * FROM schedule ORDER BY examDate DESC';
+        $sqlschedule = 'SELECT * FROM schedule WHERE deleteStatus = 1 ORDER BY examDate DESC';
         $resultschedule = mysqli_query($connect,$sqlschedule);
 	?>
                 <table class="table datatable ">
@@ -163,7 +163,7 @@ if($txtKeyword == "" )
 }else if($txtKeyword != "" )
     {
      include  'config.php';
-     $sqlschedule = "SELECT * FROM schedule WHERE
+     $sqlschedule = "SELECT * FROM schedule WHERE deleteStatus = 0 &&
         (examDate LIKE '%".$_GET["txtKeyword"]."%' ) ORDER BY examDate DESC";
                     $resultschedule = mysqli_query($connect,$sqlschedule);
                     ?>
