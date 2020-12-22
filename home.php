@@ -74,7 +74,7 @@ include 'header.php';
                 }
 if($txtKeyword == "" )
 	{
-        $sqlexam = 'SELECT * FROM exam ';
+        $sqlexam = 'SELECT * FROM exam WHERE statusShow = 0';
         $resultexam = mysqli_query($connect,$sqlexam);
 	?>
                 <table class="table datatable">
@@ -138,8 +138,8 @@ if($txtKeyword == "" )
 }else if($txtKeyword != "" )
     {
      include  'config.php';
-     $sqlexam = "SELECT * FROM exam WHERE
-        (name LIKE '%".$_GET["txtKeyword"]."%' or lastname LIKE '%".$_GET["txtKeyword"]."%' or applicant LIKE '%".$_GET["txtKeyword"]."%' or studentID LIKE '%".$_GET["txtKeyword"]."%' or idCard LIKE '%".$_GET["txtKeyword"]."%' )";
+     $sqlexam = "SELECT * FROM exam WHERE statusShow = 0 &&
+        (name LIKE '%".$_GET["txtKeyword"]."%' or lastname LIKE '%".$_GET["txtKeyword"]."%' or applicant LIKE '%".$_GET["txtKeyword"]."%' or studentID LIKE '%".$_GET["txtKeyword"]."%' or idCard LIKE '%".$_GET["txtKeyword"]."%')";
                     $resultexam = mysqli_query($connect,$sqlexam);
                     ?>
                   <table class="table datatable">
